@@ -1,0 +1,14 @@
+.card img{
+    height: 300px;
+}
+main{
+    margin-top: 5.5rem;
+    flex-grow: 1;
+    min-height: 100vh;
+}
+.bxs-heart{
+    color: red;
+}
+.bxs-heart:hover{
+    color: red;
+}

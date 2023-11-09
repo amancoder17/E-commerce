@@ -1,0 +1,32 @@
+<% layout('layout/boilerplate') -%>
+<%- include('../partials/flash') %>
+
+
+<section class="d-flex flex-wrap gap-5 justify-content-center ">
+    <% for( let item of products ) { %>
+        <div class="card mb-3" style="width: 18rem;">
+            <img src="<%= item.img %>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h5 class="card-title"><%= item.name %></h5>
+                <span class="badge text-bg-primary mb-2 text-bg-light"><%= item.avgRating %> &bigstar; | <%= item.reviews.length %></span>
+              </div>
+              <h5>$ <%= item.price %></h5>
+              <p class="card-text"><%= item.desc %></p>
+             <div class="d-flex justify-content-between">
+              <a href="/products/<%= item._id %>" class="btn btn-primary ">Buy Now</a>
+              <span class="btn">
+                <% if (currentUser && currentUser.wishlist.includes(item._id)) { %>
+                  <i class='bx bxs-heart  like-btn' style="font-size: 25px;" product-id="<%= item._id %>"></i> 
+                  <% } else { %>
+                    <i class='bx bx-heart  like-btn' style="font-size: 25px;" product-id="<%= item._id %>"></i>
+                <% } %>
+              </span>
+            </div> 
+              
+            </div>
+          </div>       
+    <% } %>
+</section>
+
+<script src="/js/like.js"></script>

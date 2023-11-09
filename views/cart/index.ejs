@@ -1,0 +1,109 @@
+<% layout('layout/boilerplate') -%> <%- include('../partials/flash') %>
+
+<section class="container">
+  <h1 class="display-6">My Cart</h1>
+  <br />
+
+  <div class="row">
+    <div class="col-lg-8">
+      <% for( let item of user.cart ) { %>
+      <section class="container">
+        <div class="card mb-3 mx-auto" style="max-width: 720px">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img
+                src="<%= item.productId.img %>"
+                class="img-fluid rounded-start"
+                alt="..."
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5
+                  class="card-title d-flex justify-content-between align-items-center"
+                >
+                  <span><%= item.productId.name %></span>
+                  <form
+                    action="/user/<%= item.productId._id %>?_method=DELETE"
+                    method="post"
+                  >
+                    <button class="btn btn-danger close-btn">
+                      <i class="bx bx-x" style="font-weight: 600"></i>
+                    </button>
+                  </form>
+                </h5>
+                <p class="card-text">Price: $<%= item.productId.price %> %></p>
+                <p class="card-text">
+                  <small class="text-body-secondary"
+                    ><%= item.productId.desc %></small
+                  >
+                </p>
+                <div>
+                  <p class="card-text d-inline">Quantity:</p>
+                  <form
+                    class="d-inline"
+                    action="/user/<%= item.productId._id %>/remove"
+                    method="post"
+                  >
+                    <button
+                      class="btn btn-sm btn-warning"
+                      style="font-size: 15px; font-weight: 700"
+                    >
+                      -
+                    </button>
+                  </form>
+
+                  <p class="d-inline"><%= item.quantity %></p>
+
+                  <form
+                    class="d-inline"
+                    action="/user/<%= item.productId._id %>/add"
+                    method="post"
+                  >
+                    <button
+                      class="btn btn-sm btn-warning"
+                      style="font-size: 15px; font-weight: 700"
+                    >
+                      +
+                    </button>
+                  </form>
+                </div>
+                <br />
+                <p class="card-text">
+                  Total Amount: $<%= item.quantity * item.productId.price %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <% } %>
+    </div>
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem">
+        <div class="card-header">Total Cart Value:</div>
+        <ul class="list-group list-group-flush">
+          <% for(let item of user.cart) { %>
+
+          <li class="list-group-item">
+            <span style="font-size: 20px; font-weight: 500"
+              ><%= item.productId.name %></span
+            >
+            <p class="card-text">Quantity: x<%= item.quantity %></p>
+            <p class="card-text">
+              Total Amount: $<%= item.quantity * item.productId.price %>
+            </p>
+          </li>
+          <% } %>
+          <li id="cart-price" class="list-group-item"> <span class="fw-bold">Cart Value:  $ <%= totalAmount %></span> </li>
+        </ul>
+      </div>
+
+      <a href="#" id="buy-bton" class="btn btn-success mt-3 fw-bold">Checkout</a>
+    </div>
+  </div>
+
+  <br />
+</section>
+<script src="/public/js/payment.js"></script>
+
