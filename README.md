@@ -1,9 +1,9 @@
 # E-commerce
-1. Using JS and EJS makes the whole structure of Website.
-2. Using Node JS, CRUD operations make routes of each section.
-3. Using authentication for Login and Signup Page use passport
- local mongoose and passport.
-4. For structural view and makeup Bootstrap is used.
-5. For Database Mongo DB is Used.
-6. Payment Gateway integrated using Razorpay payment API Method
-7. Use of MVC Architecture. 
+ Using JS and EJS makes the whole structure of Website.
+ Using Node JS, CRUD operations make routes of each section.
+	Users can Register/Login manually by using their Name, Email, and Password.
+	Backend Authentication & Authorization implemented by using Passport local Mongoose and Passport Local.
+	Users, Product, Reviews data is stored in MongoDB.
+	Users can Add, Update or Delete a product if it is a seller.
+	For Payment Razorpay Payment API is used.
+	It is based on MVC architecture and use of EJS for Structural View. 
